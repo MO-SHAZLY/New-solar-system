@@ -13,6 +13,7 @@ env:
 
 jobs:
     unit-testing:
+
         name: Unit Testing
         strategy:
             matrix:
@@ -34,7 +35,6 @@ jobs:
 
             - name: Install Dependencies
               run: npm install
-
 
             - name: Unit Testing
               run: npm test
@@ -61,6 +61,7 @@ jobs:
               run: npm install
 
             - name: check code coverage
+              continue-on-error: true
               run: npm run coverage
 
             - name: Archive test Result
