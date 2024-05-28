@@ -16,6 +16,9 @@ jobs:
             matrix:
                 nodejs_version: [18,19,20]
                 operating_system: [ubuntu-latest,macos-latest]
+                excude:
+                    - nodejs_version: 20
+                      operating_system: macos-latest
         runs-on: ${{ matrix.operating_system }}
         steps:
             - name: checkout repository
@@ -27,7 +30,6 @@ jobs:
                 node-version: ${{ matrix.nodejs_version }}
             
             - name: install depend.
-              
               run: npm install
               
             - name: Unit testing
@@ -36,7 +38,7 @@ jobs:
 
             - name: archive test result
               if: steps.nodejs-unit-testing-step.outcome == 'failure' || steps.nodejs-unit-testing-step.outcome == 'success'
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-artifact@v3
               with:
                 name: mocha-test-result
                 path: test-results.xml
