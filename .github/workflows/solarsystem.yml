@@ -15,6 +15,9 @@ jobs:
                 operating_system: [ubuntu-latest,macos-latest]
         runs-on: ${{ matrix.operating_system }}
         steps:
+            - name: checkout repository
+              uses: actions/checkout@v4
+              
             - name: setup NodeJs Version - ${{ matrix.nodejs_version }}
               uses: actions/setup-node@v4
               with:
