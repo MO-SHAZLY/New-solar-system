@@ -27,10 +27,11 @@ jobs:
                 node-version: ${{ matrix.nodejs_version }}
             
             - name: install depend.
-              id: nodejs-unit-testing-step
+              
               run: npm install
               
             - name: Unit testing
+              id: nodejs-unit-testing-step
               run: npm test
 
             - name: archive test result
